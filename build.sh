@@ -65,7 +65,7 @@ DEVICE="onc"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
-DEFCONFIG=onclite-perf_defconfig
+DEFCONFIG=onc_defconfig
 
 # Specify compiler. 
 # 'clang' or 'gcc'
@@ -297,7 +297,8 @@ build_kernel()
 			OBJDUMP=llvm-objdump \
 			STRIP=llvm-strip \
 			NM=llvm-nm \
-			OBJCOPY=llvm-objcopy
+			OBJCOPY=llvm-objcopy \
+			LD="$LINKER"
 		)
 	elif [ $COMPILER = "gcc" ]
 	then
@@ -308,7 +309,8 @@ build_kernel()
 			OBJDUMP=aarch64-elf-objdump \
 			STRIP=aarch64-elf-strip \
 			NM=aarch64-elf-nm \
-			OBJCOPY=aarch64-elf-objcopy
+			OBJCOPY=aarch64-elf-objcopy \
+			LD=aarch64-elf-$LINKER
 		)
 	fi
 	
